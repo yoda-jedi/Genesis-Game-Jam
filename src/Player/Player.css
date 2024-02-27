@@ -1,8 +1,14 @@
-.Player {
-  font-family: sans-serif;
-  text-align: center;
+.sprite {
+  width: 128px; /* Set the width of the sprite */
+  height: 128px; /* Set the height of the sprite */
+  animation: animateSprite 1s steps(4) infinite; /* Define the animation */
 }
 
-.Character {
-  border: 1px solid black;
+@keyframes animateSprite {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -512px; /* Set the final position of the sprite */
+  }
 }

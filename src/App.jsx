@@ -1,4 +1,4 @@
-import React, { StrictMode, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { round, evaluate } from "mathjs";
 import "./App.css";
 import Grid from "./Grid/Grid";
@@ -20,9 +20,11 @@ const data = [
 const App = () => {
   const [userDamage, setUserDamage] = useState(0);
   const [userHealth, setUserHealth] = useState(100);
-  const [counter, setCounter] = useState(30);
+  const [counter, setCounter] = useState(15);
   const [isCounterFrozen, setCounterFrozen] = useState(false);
   const setCounterRef = useRef(setCounter);
+  const playerIdleSprite = "../src/assets/Character/Archer/Idle.png";
+  const playerAttackSprite = "../src/assets/Character/Archer/Shot_1.png";
 
   const handleCellClick = (value) => {
     setCounterFrozen(true);
@@ -53,24 +55,26 @@ const App = () => {
       <div className="players">
         <div className="user">
           <div className="player-tag">User</div>
-          <img
+          {/* <img
             src="../src/assets/Character/Archer/Idle.gif"
             alt="Idle GIF"
             width={128}
             height={128}
-          />
+          /> */}
+          <Player imageUrl={playerIdleSprite} />
           <div className="user-health">HP : {userHealth}</div>
           <div className="user-damage">Attack : {userDamage}</div>
         </div>
         <div className="opponent">
           <div className="opp-tag">Opponent</div>
-          <img
+          <Player imageUrl={playerIdleSprite} flip />
+          {/* <img
             src="../src/assets/Character/Archer/Idle.gif"
             alt="Idle GIF"
             width={128}
             height={128}
             style={{ transform: "scaleX(-1)" }}
-          />
+          /> */}
           <div className="opp-health">HP : {userHealth}</div>
           <div className="opp-damage">Attack : {userDamage}</div>
         </div>

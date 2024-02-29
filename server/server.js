@@ -25,10 +25,10 @@ io.on("connection", async (socket) => {
   socket.on("create", async (room) => {
     if (!(room.name in rooms || room.name in fullRooms)) {
       socket.join(room.name)
-      rooms.push(room.name)
-      socket.send({"message": "OK"})
+      rooms[room.name] = { "players": [socket,], "current": 0 }
+      socket.send({ "message": "OK" })
     }
-    socket.send({"message": "Room with same name already exists"})
+    socket.send({ "message": "Room with same name already exists" })
   })
 
   socket.on("search", async () => {
@@ -36,11 +36,14 @@ io.on("connection", async (socket) => {
   })
 
   socket.on("join", async (room) => {
-    const index = rooms.findIndex(room.name)
-    if (index !== -1) {
-      rooms.splice(index, 1)
+    if (room.name in rooms) {
+      const room = rooms[room.name]
+      room.players.push(socket)
+
+      delete rooms[room.name]
       socket.join(room.name)
-      fullRooms.push(room.name)
+      
+      fullRooms[room.name] = room
     }
   })
 });

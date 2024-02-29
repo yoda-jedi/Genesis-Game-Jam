@@ -1,0 +1,22 @@
+<svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="200"
+      height="200"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <defs>
+        <radialGradient
+          id="portalGradient"
+          cx="50%"
+          cy="50%"
+          r="50%"
+          fx="50%"
+          fy="50%"
+        >
+          <stop offset="50%" stopColor="#4adede" />
+          <stop offset="100%" stopColor="#1aa7ec" />
+        </radialGradient>
+      </defs>
+      <circle cx="12" cy="12" r="10" fill="url(#portalGradient)" />
+</svg>

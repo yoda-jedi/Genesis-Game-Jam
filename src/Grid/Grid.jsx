@@ -8,9 +8,12 @@ const Grid = (props) => {
     for (let j = 0; j < 3; j++) {
       cells.push(
         <div
+          id={"cell" + (i * 3 + j)}
           key={i * 3 + j}
           className="cell"
-          onClick={() => props.onCellClick(props.data[i * 3 + j])}
+          onClick={() => {
+            props.onCellClick(props.data[i * 3 + j]);
+          }}
         >
           {props.data[i * 3 + j]}
         </div>

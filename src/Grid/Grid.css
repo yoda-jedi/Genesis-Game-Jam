@@ -4,6 +4,10 @@
   grid-gap: 10px;
 }
 
+.grid:hover {
+  cursor: pointer;
+}
+
 .cell {
   display: flex;
   justify-content: center;

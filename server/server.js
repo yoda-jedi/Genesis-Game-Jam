@@ -1,4 +1,5 @@
 var express = require("express");
+const { SocketAddress } = require("net");
 
 var app = express();
 
@@ -26,13 +27,13 @@ io.on("connection", async (socket) => {
     if (!(room.name in rooms || room.name in fullRooms)) {
       socket.join(room.name)
       rooms[room.name] = { "players": [socket,], "current": 0 }
-      socket.send({ "message": "OK" })
+      socket.emit("create_response", "OK")
     }
-    socket.send({ "message": "Room with same name already exists" })
+    socket.emit("create_response", "Room with same name already exists")
   })
 
   socket.on("search", async () => {
-    socket.send(rooms)
+    socket.emit("search_results", rooms)
   })
 
   socket.on("join", async (room) => {
@@ -42,8 +43,25 @@ io.on("connection", async (socket) => {
 
       delete rooms[room.name]
       socket.join(room.name)
-      
+      socket.emit("join_response", "joined successfully")
       fullRooms[room.name] = room
+    } else {
+      socket.emit("join_response", "failed to join")
     }
+  })
+
+  socket.on("damage", async (damage) => {
+    var rooms = Object.keys(io.sockets.adapter.sids[socket.id]);
+    rooms.forEach((room) => {
+      io.to(room).emit("receive_damage", damage)
+    })
+  })
+
+  socket.on("game_result", async (result) => {
+    var rooms = Object.keys(io.sockets.adapter.sids[socket.id]);
+    rooms.forEach((room) => {
+      io.to(room).emit("game_result", result)
+      delete fullRooms[room]
+    })
   })
 });

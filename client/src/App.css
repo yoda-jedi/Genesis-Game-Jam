@@ -1,0 +1,59 @@
+* {
+  user-select: none;
+}
+
+.main-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.playOnline {
+  font-weight: 700;
+  border: none;
+  background-color: #e4ca56;
+  font-size: 60px;
+  cursor: pointer;
+  margin-top: 40vh;
+  padding: 6px 10px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.waiting {
+  font-size: 48px;
+  text-align: center;
+}
+
+.water-background {
+  background-color: #4b495f;
+}
+
+.game-heading {
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.expression-matrix {
+  justify-content: center;
+}
+
+.timer {
+  font-size: 32px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.users {
+  font-size: 32px;
+  width: 100%;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.player .opponent {
+  display: flex;
+  flex-direction: column;
+}

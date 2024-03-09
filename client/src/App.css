@@ -15,10 +15,22 @@
   background-color: #e4ca56;
   font-size: 60px;
   cursor: pointer;
-  margin-top: 40vh;
+  margin-top: 20vh;
   padding: 6px 10px;
   border-radius: 5px;
   outline: none;
+}
+
+.playDemo{
+  font-weight: 700;
+  border:none;
+  background-color: #e4ca56;
+  font-size: 60px;
+  cursor: pointer;
+  margin-top: 20vh;
+  padding: 6px 10px;
+  border-radius: 5px;
+  outline:none;
 }
 
 .waiting {
@@ -50,7 +62,7 @@
   width: 100%;
   margin: 50px auto;
   display: flex;
-  justify-content: space-evenly;
+  gap:  50vw;
 }
 
 .player .opponent {

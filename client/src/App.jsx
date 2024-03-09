@@ -6,6 +6,7 @@ import "./App.css";
 import Grid from "./Grid/Grid";
 import Timer from "./Timer/Timer";
 import Player from "./Player/Player";
+import Demo from "./Demo";
 
 const data = [
   "2 * x",
@@ -37,14 +38,14 @@ const App = () => {
   const [opponentName, setOpponentName] = useState(null);
   const [playOnline, setPlayOnline] = useState(false);
   const [socket, setSocket] = useState(null);
-
+  const [demo, setDemo] = useState(false);
   const handleCellClick = (value) => {
     if (isCellClicked) {
       return;
     }
     setIsCellClicked(true);
     console.log(`Clicked cell value: ${value}`);
-    const result = evaluate(value.replace("x", counter));
+    const result = evaluate(value.replace("x", counter*2));
     const id = socket?.id;
     socket?.emit("playerMoveFromClient", {
       id,
@@ -194,12 +195,29 @@ const App = () => {
     setSocket(newSocket);
   }
 
+
+  function playDemo(){
+    setDemo(true);
+    console.log("play demo");
+    setPlayOnline(true);
+  }
+
   if (!playOnline) {
     return (
       <div className="main-div">
+         <button onClick = {playDemo} className = "playDemo">
+          Play Demo
+        </button>
         <button onClick={playOnlineClick} className="playOnline">
           Play Online
         </button>
+      </div>
+    );
+  }
+  if(demo){
+    return (
+      <div>
+        <Demo />
       </div>
     );
   }
